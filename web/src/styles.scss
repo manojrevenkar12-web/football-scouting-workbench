@@ -1,0 +1,33 @@
+@use "styles/tokens";
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light dark; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--text-md); line-height: 1.5; -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; margin: 0; letter-spacing: -0.005em; }
+p { margin: 0; }
+a { color: var(--cobalt); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--radius-s); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.num { font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink-3); font-size: var(--text-sm); }
+.chip { display: inline-flex; align-items: center; gap: var(--space-1); padding: 0 var(--space-2); border-radius: var(--radius-pill); font-size: var(--text-xs); line-height: 1.8; white-space: nowrap; background: var(--line-soft); color: var(--ink-2); }
+.chip.is-ok { background: var(--ok-soft); color: var(--ok); }
+.chip.is-warn { background: var(--warn-soft); color: var(--warn); }
+.chip.is-stop { background: var(--stop-soft); color: var(--stop); }
+.chip.is-cobalt { background: var(--cobalt-soft); color: var(--cobalt); }
+.btn { border: var(--rule); background: var(--surface); border-radius: var(--radius-s); padding: var(--space-1) var(--space-3); cursor: pointer; }
+.btn.is-primary { background: var(--cobalt); border-color: var(--cobalt); color: var(--on-accent); }
+.page-head { display: grid; gap: var(--space-2); margin-bottom: var(--space-5); max-inline-size: var(--measure); }
+.page-head h1 { font-size: var(--text-2xl); }
+.page-head p { color: var(--ink-2); }
+
+// Enter animations (Angular animate.enter adds these classes).
+.enter-rise { animation: rise var(--dur-base) var(--ease) both; }
+.enter-fade { animation: fade var(--dur-quick) var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: var(--dur-base); }

@@ -1,0 +1,41 @@
+{
+  "_note": "The simulated football world. Only the :world module reads this file.",
+  "leagues": [
+    {"id": 1, "name": "Bundesliga", "country": "Germany", "strength": 0.00},
+    {"id": 2, "name": "Eredivisie", "country": "Netherlands", "strength": -0.30},
+    {"id": 3, "name": "Primeira Liga", "country": "Portugal", "strength": -0.25},
+    {"id": 4, "name": "Jupiler Pro League", "country": "Belgium", "strength": -0.35},
+    {"id": 5, "name": "2. Bundesliga", "country": "Germany", "strength": -0.50},
+    {"id": 6, "name": "Superliga", "country": "Denmark", "strength": -0.55}
+  ],
+  "teamsPerLeague": 16,
+  "squadSize": 22,
+  "teamQualitySd": 0.18,
+  "crossLeagueMatchesPerTeam": 3,
+  "positions": {
+    "GK": {"share": 2, "actionsPer90": 28, "bypassPerAction": 0.30, "xgPer90": 0.00, "defPer90": 1.0},
+    "CB": {"share": 4, "actionsPer90": 62, "bypassPerAction": 0.55, "xgPer90": 0.05, "defPer90": 7.0},
+    "FB": {"share": 4, "actionsPer90": 55, "bypassPerAction": 0.70, "xgPer90": 0.06, "defPer90": 5.0},
+    "DM": {"share": 2, "actionsPer90": 66, "bypassPerAction": 0.75, "xgPer90": 0.05, "defPer90": 6.0},
+    "CM": {"share": 3, "actionsPer90": 58, "bypassPerAction": 0.85, "xgPer90": 0.10, "defPer90": 4.0},
+    "AM": {"share": 2, "actionsPer90": 48, "bypassPerAction": 0.95, "xgPer90": 0.22, "defPer90": 2.0},
+    "W": {"share": 3, "actionsPer90": 42, "bypassPerAction": 1.00, "xgPer90": 0.28, "defPer90": 1.8},
+    "ST": {"share": 2, "actionsPer90": 30, "bypassPerAction": 0.70, "xgPer90": 0.45, "defPer90": 1.2}
+  },
+  "abilitySd": 0.22,
+  "opponentEffect": 0.9,
+  "possessionEffect": 0.8,
+  "ageRange": [17, 34],
+  "leftFootShare": 0.25,
+  "minutes": {"starterShare": 0.55, "rotationShare": 0.3, "injuryRate": 0.03},
+  "eventsPerMatchCap": 2400,
+  "videoClip": {"before": 8, "after": 6},
+  "model": {
+    "leagueNameError": 0.12,
+    "ageOffByOne": 0.10,
+    "footDropped": 0.08,
+    "unknownMetric": 0.08,
+    "sqlInjectionText": 0.02,
+    "ambiguousShare": 0.15
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "_note": "Settings the platform reads. The world never reads this file.",
+  "shrinkage": {
+    "priorActions": 80
+  },
+  "opponentModel": {
+    "iterations": 25,
+    "ridge": 2.0
+  },
+  "query": {
+    "maxLimit": 100,
+    "defaultLimit": 25,
+    "minMinutesDefault": 450,
+    "maxAge": 40
+  },
+  "similarity": {
+    "minMinutes": 600,
+    "neighbours": 10
+  },
+  "assistant": {
+    "model": "claude-haiku-5-5",
+    "maxTokens": 500,
+    "timeoutSeconds": 20,
+    "vagueAgeWords": [
+      "young",
+      "youngster",
+      "youngsters",
+      "experienced",
+      "veteran",
+      "veterans",
+      "prospect",
+      "prospects"
+    ],
+    "uncoveredLeagues": [
+      "serie a",
+      "la liga",
+      "laliga",
+      "ligue 1",
+      "premier league",
+      "championship",
+      "mls",
+      "eliteserien",
+      "allsvenskan",
+      "super lig",
+      "süper lig",
+      "scottish premiership",
+      "austrian bundesliga",
+      "swiss super league"
+    ]
+  },
+  "leagueAliases": {
+    "bundesliga": 1,
+    "1. bundesliga": 1,
+    "german bundesliga": 1,
+    "eredivisie": 2,
+    "dutch league": 2,
+    "primeira liga": 3,
+    "liga portugal": 3,
+    "portuguese league": 3,
+    "jupiler pro league": 4,
+    "belgian pro league": 4,
+    "belgian league": 4,
+    "2. bundesliga": 5,
+    "zweite bundesliga": 5,
+    "2 bundesliga": 5,
+    "superliga": 6,
+    "danish superliga": 6
+  }
+}

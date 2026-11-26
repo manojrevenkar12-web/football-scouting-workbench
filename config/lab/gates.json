@@ -1,0 +1,12 @@
+{
+  "_note": "Frozen before the held-out seeds ran. Each gate reads a metric of the platform design unless it names another.",
+  "gates": [
+    {"id": "find_talent", "text": "At least 60% of the 20 best young progressors in the top 20", "path": "ranking.platform.precisionAt20", "op": ">=", "value": 0.6},
+    {"id": "beats_per90", "text": "Finds at least 1.5x as many of them as a per-90 sort", "path": "ranking.platform.precisionAt20", "op": ">=", "ref": "ranking.per90.precisionAt20", "factor": 1.5},
+    {"id": "rank_order", "text": "Rank correlation with true ability at least 0.9", "path": "ranking.platform.spearman", "op": ">=", "value": 0.9},
+    {"id": "covers_all", "text": "Rates every young outfield player who played 270+ minutes", "path": "ranking.platform.covered", "op": ">=", "value": 1.0},
+    {"id": "no_wrong_answers", "text": "The assistant never shows a wrong result", "path": "assistant.assistant.wrongShown", "op": "<=", "value": 0.0},
+    {"id": "answers_most", "text": "The assistant answers at least 80% of requests correctly", "path": "assistant.assistant.right", "op": ">=", "value": 0.8},
+    {"id": "asks_little", "text": "It asks back on at most 20% of requests", "path": "assistant.assistant.asked", "op": "<=", "value": 0.2}
+  ]
+}

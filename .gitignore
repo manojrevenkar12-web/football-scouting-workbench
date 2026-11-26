@@ -1,0 +1,10 @@
+.gradle/
+build/
+*/build/
+out/
+web/node_modules/
+web/dist/
+*.log
+.idea/
+.DS_Store
+web/.angular/

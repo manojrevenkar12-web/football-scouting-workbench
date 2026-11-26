@@ -1,0 +1,86 @@
+// Design tokens. Ink on cool paper, cobalt for what the scout acts on, a deep-green pitch for where things happened.
+:root {
+  --paper: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #121826;
+  --ink-2: #3c4558;
+  --ink-3: #6a7386;
+  --line: #d5d9e1;
+  --line-soft: #e6e9ee;
+  --cobalt: #2549d6;
+  --cobalt-soft: #e3e9fb;
+  // The pitch is the same deep green in both modes; arrows on it read brighter = more opponents taken out (validated as one-hue ordinal ramp on #1f4a37).
+  --pitch: #1f4a37;
+  --pitch-line: #8fb5a2;
+  --pitch-1: #4d68cf;
+  --pitch-2: #8197e8;
+  --pitch-3: #b8c5f7;
+  --pitch-4: #eef2ff;
+  --shot: #f4d35e;
+  --on-pitch: #dce8e1;
+  --on-accent: #ffffff; // text on cobalt and status fills
+  --ok: #1f7a4a;
+  --ok-soft: #dcf0e5;
+  --warn: #9a5800;
+  --warn-soft: #f8ead4;
+  --stop: #b42318;
+  --stop-soft: #fbe2df;
+  --focus: #2549d6;
+
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-display: "Archivo Narrow", "Archivo", sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-pill: 999px;
+  --rule: 1px solid var(--line);
+  --measure: 44rem;
+  --content-max: 80rem;
+  --rail: 15rem;
+
+  --dur-quick: 160ms;
+  --dur-base: 280ms;
+  --ease: cubic-bezier(0.22, 0.8, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f141f;
+    --surface: #161d2b;
+    --ink: #e8ecf4;
+    --ink-2: #b4bccc;
+    --ink-3: #8a93a6;
+    --line: #2c3547;
+    --line-soft: #202838;
+    --cobalt: #7d96ea;
+    --cobalt-soft: #1f2a4f;
+    --ok: #5cc28b;
+    --ok-soft: #173a29;
+    --warn: #e6a64a;
+    --warn-soft: #3d2b12;
+    --stop: #f0857c;
+    --stop-soft: #43201d;
+    --focus: #7d96ea;
+    --on-accent: #0f141f;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-quick: 0ms; --dur-base: 0ms; }
+}

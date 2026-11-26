@@ -1,0 +1,88 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  java:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: scout
+          POSTGRES_PASSWORD: scout
+          POSTGRES_DB: scouting_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U scout" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      SCOUT_TEST_DB_URL: jdbc:postgresql://localhost:5432/scouting_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compile and test every module, the service on PostgreSQL
+        run: ./gradlew build --no-daemon
+
+  lab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Dev results reproduce exactly and pass the gates
+        run: ./gradlew :lab:run --args="dev --check" --no-daemon -q
+      - name: README, REPORT and the console's results agree with the reports
+        run: |
+          ./gradlew :lab:run --args="report" --no-daemon -q
+          git diff --exit-code README.md REPORT.md web/public/data/results.json
+
+  service:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: scout
+          POSTGRES_PASSWORD: scout
+          POSTGRES_DB: scouting
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U scout" --health-interval 5s --health-timeout 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build the console
+        working-directory: web
+        run: npm ci && npm run build
+      - name: Build the jar with the console in it
+        run: ./gradlew :service:bootJar --no-daemon -q
+      - name: The jar migrates PostgreSQL, rates a loaded season and serves the API and the console
+        run: |
+          SCOUT_REFRESH_ON_START=false java -jar service/build/libs/football-scouting-workbench.jar &
+          for i in $(seq 1 60); do curl -sf localhost:8091/actuator/health && break; sleep 2; done
+          ./gradlew :lab:run --args="load-db 77" --no-daemon -q
+          curl -sf -X POST -H 'x-admin-key: ci-admin' localhost:8091/api/admin/refresh | python3 -c "import json,sys; d=json.load(sys.stdin); print(d); assert d['rated'] > 2000"
+          curl -sf -X POST -H 'content-type: application/json' -d '{"positions":["CB"],"maxAge":23,"sortBy":"PROGRESSION","limit":5}' localhost:8091/api/search \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d), 'centre-backs'); assert len(d) == 5 and all(p['position'] == 'CB' and p['age'] <= 23 for p in d)"
+          curl -sf -X POST -H 'content-type: application/json' -d '{"request":"left-footed centre-backs under 23 in the Eredivisie"}' localhost:8091/api/assistant \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['status'], len(d['results'])); assert d['status'] == 'RUN'"
+          for path in / /lab /assistant /players/1; do curl -sf localhost:8091$path | grep -q '<app-root>' || { echo "$path does not serve the console"; exit 1; }; done
+        env:
+          SCOUT_ADMIN_KEY: ci-admin

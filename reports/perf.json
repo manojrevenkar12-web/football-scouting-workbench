@@ -1,0 +1,29 @@
+{
+  "events" : 1948023,
+  "loadSeconds" : 37.2,
+  "designs" : {
+    "event_scan" : {
+      "p50Ms" : 188.35,
+      "p95Ms" : 240.01,
+      "maxMs" : 275.51,
+      "plan" : "Limit > Sort > Merge Join > Hash Join > Seq Scan on player > HashAggregate"
+    },
+    "indexed_lookup" : {
+      "p50Ms" : 3.88,
+      "p95Ms" : 24.14,
+      "maxMs" : 25.57,
+      "plan" : "Limit > Sort > Nested Loop > Seq Scan on player > Index Only Scan using team_pkey on team > Aggregate"
+    },
+    "read_model" : {
+      "p50Ms" : 0.12,
+      "p95Ms" : 0.28,
+      "maxMs" : 1.49,
+      "plan" : "Limit > Sort > Bitmap Heap Scan on player_ratings"
+    }
+  },
+  "postgres" : "16",
+  "seed" : 501,
+  "queries" : 8,
+  "runsPerQuery" : 25,
+  "measuredOn" : "a 2-core development VM"
+}

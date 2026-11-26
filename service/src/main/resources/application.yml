@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: football-scouting-workbench
+  datasource:
+    url: ${SCOUT_DB_URL:jdbc:postgresql://localhost:5432/scouting}
+    username: ${SCOUT_DB_USER:scout}
+    password: ${SCOUT_DB_PASSWORD:scout}
+  flyway:
+    enabled: true
+  threads:
+    virtual:
+      enabled: true
+server:
+  port: ${PORT:8091}
+  error:
+    include-message: never
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+scout:
+  root: ${SCOUT_ROOT:.}
+  admin-key: ${SCOUT_ADMIN_KEY:}
+  anthropic-key: ${ANTHROPIC_API_KEY:}
+  refresh-on-start: ${SCOUT_REFRESH_ON_START:true}

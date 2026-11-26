@@ -1,0 +1,62 @@
+{
+  "seeds" : [ 9501, 9502 ],
+  "leagues" : 6,
+  "players" : 2112,
+  "matches" : 1584,
+  "appearances" : 42574,
+  "requests" : 300,
+  "ranking" : {
+    "totals" : {
+      "precisionAt20" : 0.4,
+      "topLeagueShare" : 0.025,
+      "spearman" : 0.5429,
+      "covered" : 1.0
+    },
+    "per90" : {
+      "precisionAt20" : 0.5,
+      "topLeagueShare" : 0.0,
+      "spearman" : 0.7827,
+      "covered" : 0.8461
+    },
+    "per_action" : {
+      "precisionAt20" : 0.55,
+      "topLeagueShare" : 0.025,
+      "spearman" : 0.8298,
+      "covered" : 0.8461
+    },
+    "platform" : {
+      "precisionAt20" : 0.825,
+      "topLeagueShare" : 0.075,
+      "spearman" : 0.9654,
+      "covered" : 1.0
+    },
+    "platform_no_opponent" : {
+      "precisionAt20" : 0.6,
+      "topLeagueShare" : 0.025,
+      "spearman" : 0.8197,
+      "covered" : 1.0
+    },
+    "platform_no_shrinkage" : {
+      "precisionAt20" : 0.8,
+      "topLeagueShare" : 0.075,
+      "spearman" : 0.974,
+      "covered" : 0.8461
+    },
+    "_truth" : {
+      "topLeagueShare" : 0.15,
+      "poolSize" : 701.0
+    }
+  },
+  "assistant" : {
+    "model_unchecked" : {
+      "right" : 0.5617,
+      "wrongShown" : 0.4383,
+      "asked" : 0.0
+    },
+    "assistant" : {
+      "right" : 0.9167,
+      "wrongShown" : 0.0,
+      "asked" : 0.0833
+    }
+  }
+}
